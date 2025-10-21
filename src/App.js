@@ -9,8 +9,13 @@ import Projects from './pages/Projects';
 import Contact from './pages/Contact';
 
 function App() {
+  // 自动检测GitHub Pages的base path
+  const basename = process.env.NODE_ENV === 'production' && process.env.PUBLIC_URL 
+    ? process.env.PUBLIC_URL 
+    : '';
+
   return (
-    <Router>
+    <Router basename={basename}>
       <div className="App bg-white text-gray-900 overflow-x-hidden">
         <ScrollToTop />
         <Header />
