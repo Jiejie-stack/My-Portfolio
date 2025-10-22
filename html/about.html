@@ -1,0 +1,378 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>About - Weijie Huang</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/animejs/3.2.1/anime.min.js"></script>
+    <script src="https://unpkg.com/splitting@1.0.6/dist/splitting.js"></script>
+    <link rel="stylesheet" href="https://unpkg.com/splitting@1.0.6/dist/splitting.css">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800;900&display=swap" rel="stylesheet">
+    <style>
+        * {
+            font-family: 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif;
+        }
+        
+        .glass-nav {
+            backdrop-filter: blur(20px);
+            -webkit-backdrop-filter: blur(20px);
+            background: rgba(255, 255, 255, 0.8);
+            border-bottom: 1px solid rgba(255, 255, 255, 0.2);
+        }
+        
+        .text-gradient {
+            background: linear-gradient(135deg, #007AFF 0%, #5856D6 100%);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+        }
+        
+        .nav-link {
+            position: relative;
+            transition: all 0.3s ease;
+        }
+        
+        .nav-link::after {
+            content: '';
+            position: absolute;
+            bottom: -4px;
+            left: 0;
+            width: 0;
+            height: 2px;
+            background: linear-gradient(90deg, #007AFF 0%, #5856D6 100%);
+            transition: width 0.3s ease;
+        }
+        
+        .nav-link:hover::after,
+        .nav-link.active::after {
+            width: 100%;
+        }
+        
+        .timeline-item {
+            position: relative;
+            padding-left: 2rem;
+        }
+        
+        .timeline-item::before {
+            content: '';
+            position: absolute;
+            left: 0;
+            top: 0.5rem;
+            width: 12px;
+            height: 12px;
+            background: linear-gradient(135deg, #007AFF 0%, #5856D6 100%);
+            border-radius: 50%;
+        }
+        
+        .timeline-item::after {
+            content: '';
+            position: absolute;
+            left: 5px;
+            top: 1.5rem;
+            width: 2px;
+            height: calc(100% - 1rem);
+            background: #e5e7eb;
+        }
+        
+        .timeline-item:last-child::after {
+            display: none;
+        }
+        
+        .scroll-reveal {
+            opacity: 0;
+            transform: translateY(30px);
+            transition: all 0.8s cubic-bezier(0.4, 0, 0.2, 1);
+        }
+        
+        .scroll-reveal.revealed {
+            opacity: 1;
+            transform: translateY(0);
+        }
+        
+        .achievement-card {
+            background: white;
+            border-radius: 16px;
+            padding: 1.5rem;
+            box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.1);
+            border: 1px solid rgba(0, 122, 255, 0.1);
+            transition: all 0.3s ease;
+        }
+        
+        .achievement-card:hover {
+            transform: translateY(-4px);
+            box-shadow: 0 20px 25px -5px rgba(0, 122, 255, 0.1);
+        }
+    </style>
+</head>
+<body class="bg-gray-50 text-gray-900">
+    <!-- Navigation -->
+    <nav class="glass-nav fixed top-0 left-0 right-0 z-50 px-6 py-4">
+        <div class="max-w-7xl mx-auto flex items-center justify-between">
+            <div class="text-xl font-bold text-gradient">
+                <a href="index.html">Weijie Huang</a>
+            </div>
+            <div class="hidden md:flex space-x-8">
+                <a href="index.html" class="nav-link text-gray-700 hover:text-blue-600 font-medium">Home</a>
+                <a href="about.html" class="nav-link active text-gray-700 hover:text-blue-600 font-medium">About</a>
+                <a href="projects.html" class="nav-link text-gray-700 hover:text-blue-600 font-medium">Projects</a>
+                <a href="contact.html" class="nav-link text-gray-700 hover:text-blue-600 font-medium">Contact</a>
+            </div>
+            <div class="md:hidden">
+                <button id="mobile-menu-btn" class="text-gray-700 hover:text-blue-600">
+                    <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6h16M4 12h16M4 18h16"></path>
+                    </svg>
+                </button>
+            </div>
+        </div>
+    </nav>
+
+    <!-- Hero Section -->
+    <section class="pt-32 pb-20 px-6 bg-white">
+        <div class="max-w-4xl mx-auto text-center">
+            <h1 class="text-5xl md:text-6xl font-black text-gray-900 mb-6 scroll-reveal" data-splitting>
+                About Me
+            </h1>
+            <p class="text-xl text-gray-600 max-w-3xl mx-auto scroll-reveal">
+                A passionate data scientist and designer dedicated to creating meaningful digital experiences 
+                that bridge the gap between complex data and human understanding.
+            </p>
+        </div>
+    </section>
+
+    <!-- Personal Story -->
+    <section class="py-20 px-6 bg-white">
+        <div class="max-w-6xl mx-auto">
+            <div class="grid grid-cols-1 lg:grid-cols-2 gap-16 items-center">
+                <div class="scroll-reveal">
+                    <img src="resources/hero-image.png" alt="Weijie Huang" 
+                         class="w-full h-auto rounded-3xl shadow-2xl">
+                </div>
+                <div class="scroll-reveal">
+                    <h2 class="text-3xl md:text-4xl font-bold text-gray-900 mb-6">
+                        Bridging <span class="text-gradient">Data & Design</span>
+                    </h2>
+                    <p class="text-lg text-gray-600 mb-6 leading-relaxed">
+                        I'm currently pursuing a Master of Data Science at The University of Sydney, building upon my 
+                        foundation in Interaction Design. This unique combination allows me to approach complex data 
+                        challenges with both analytical rigor and human-centered thinking.
+                    </p>
+                    <p class="text-lg text-gray-600 mb-6 leading-relaxed">
+                        My journey began with a Bachelor of Science in Information Technology from UTS, where I discovered 
+                        the power of combining technical skills with design thinking. My experience spans from account 
+                        management in financial services to data analytics internships, giving me a unique perspective 
+                        on business needs and technical solutions.
+                    </p>
+                    <p class="text-lg text-gray-600 mb-8 leading-relaxed">
+                        Beyond technology, I'm an avid badminton player and achieved the title of 2024 ABL Badminton 
+                        League B Group Men's Singles Champion. This competitive experience has taught me the importance 
+                        of strategic thinking, quick adaptation, and continuous improvement - skills that translate 
+                        directly to my professional work in fast-paced tech environments.
+                    </p>
+                    
+                    <div class="grid grid-cols-2 gap-6">
+                        <div class="text-center">
+                            <div class="text-3xl font-bold text-gradient">3+</div>
+                            <div class="text-gray-600">Years Experience</div>
+                        </div>
+                        <div class="text-center">
+                            <div class="text-3xl font-bold text-gradient">15+</div>
+                            <div class="text-gray-600">Projects Completed</div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Education Timeline -->
+    <section class="py-20 px-6 bg-gray-50">
+        <div class="max-w-4xl mx-auto">
+            <h2 class="text-3xl md:text-4xl font-bold text-gray-900 text-center mb-16 scroll-reveal">
+                Education & <span class="text-gradient">Experience</span>
+            </h2>
+            
+            <div class="space-y-12">
+                <div class="timeline-item scroll-reveal">
+                    <div class="bg-white p-8 rounded-2xl shadow-lg">
+                        <div class="flex flex-col md:flex-row md:items-center md:justify-between mb-4">
+                            <h3 class="text-xl font-bold text-gray-900">Master of Data Science</h3>
+                            <span class="text-blue-600 font-medium">2024 – Present</span>
+                        </div>
+                        <p class="text-gray-600 mb-2">The University of Sydney</p>
+                        <p class="text-gray-600">
+                            Specializing in machine learning, data engineering, and statistical analysis. 
+                            Currently working on advanced AI applications and data pipeline optimization.
+                        </p>
+                    </div>
+                </div>
+                
+                <div class="timeline-item scroll-reveal">
+                    <div class="bg-white p-8 rounded-2xl shadow-lg">
+                        <div class="flex flex-col md:flex-row md:items-center md:justify-between mb-4">
+                            <h3 class="text-xl font-bold text-gray-900">Account Manager</h3>
+                            <span class="text-blue-600 font-medium">Sep 2025 – Present</span>
+                        </div>
+                        <p class="text-gray-600 mb-2">TMGM, Sydney</p>
+                        <p class="text-gray-600">
+                            Promoted and traded equity products focusing on US and Hong Kong stocks, contributing to a 10% 
+                            increase in new client acquisitions. Built and maintained a pipeline of 50+ active clients through 
+                            proactive outreach and relationship management.
+                        </p>
+                    </div>
+                </div>
+                
+                <div class="timeline-item scroll-reveal">
+                    <div class="bg-white p-8 rounded-2xl shadow-lg">
+                        <div class="flex flex-col md:flex-row md:items-center md:justify-between mb-4">
+                            <h3 class="text-xl font-bold text-gray-900">Data & Business Analytics Intern</h3>
+                            <span class="text-blue-600 font-medium">Feb 2024 – Jun 2024</span>
+                        </div>
+                        <p class="text-gray-600 mb-2">Tyroola, Sydney</p>
+                        <p class="text-gray-600">
+                            Developed automated dashboards and performed financial reconciliation to optimize 
+                            sales tracking and reporting efficiency. Built Excel cube-based data analytics pipelines 
+                            and integrated sales, payment, and inventory datasets.
+                        </p>
+                    </div>
+                </div>
+                
+                <div class="timeline-item scroll-reveal">
+                    <div class="bg-white p-8 rounded-2xl shadow-lg">
+                        <div class="flex flex-col md:flex-row md:items-center md:justify-between mb-4">
+                            <h3 class="text-xl font-bold text-gray-900">Bachelor of Science in Information Technology</h3>
+                            <span class="text-blue-600 font-medium">2020 – 2023</span>
+                        </div>
+                        <p class="text-gray-600 mb-2">University of Technology Sydney (UTS)</p>
+                        <p class="text-gray-600">
+                            Focused on interaction design and software development. Built foundation in 
+                            user experience design, programming, and system architecture.
+                        </p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Skills & Achievements -->
+    <section class="py-20 px-6 bg-white">
+        <div class="max-w-6xl mx-auto">
+            <h2 class="text-3xl md:text-4xl font-bold text-gray-900 text-center mb-16 scroll-reveal">
+                Skills & <span class="text-gradient">Achievements</span>
+            </h2>
+            
+            <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
+                <div class="achievement-card scroll-reveal">
+                    <div class="w-16 h-16 bg-blue-100 rounded-full flex items-center justify-center mb-6">
+                        <svg class="w-8 h-8 text-blue-600" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 12l2 2 4-4m6 2a9 9 0 11-18 0 9 9 0 0118 0z"></path>
+                        </svg>
+                    </div>
+                    <h3 class="text-xl font-bold text-gray-900 mb-3">2024 ABL Badminton Champion</h3>
+                    <p class="text-gray-600">Achieved first place in B Group Men's Singles at the Australian Badminton League, demonstrating strategic thinking and competitive excellence.</p>
+                </div>
+                
+                <div class="achievement-card scroll-reveal">
+                    <div class="w-16 h-16 bg-purple-100 rounded-full flex items-center justify-center mb-6">
+                        <svg class="w-8 h-8 text-purple-600" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M13 10V3L4 14h7v7l9-11h-7z"></path>
+                        </svg>
+                    </div>
+                    <h3 class="text-xl font-bold text-gray-900 mb-3">AI Platform Development</h3>
+                    <p class="text-gray-600">Designed and developed a comprehensive AI image generation platform with robust backend APIs and elegant user interface.</p>
+                </div>
+                
+                <div class="achievement-card scroll-reveal">
+                    <div class="w-16 h-16 bg-green-100 rounded-full flex items-center justify-center mb-6">
+                        <svg class="w-8 h-8 text-green-600" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 19v-6a2 2 0 00-2-2H5a2 2 0 00-2 2v6a2 2 0 002 2h2a2 2 0 002-2zm0 0V9a2 2 0 012-2h2a2 2 0 012 2v10m-6 0a2 2 0 002 2h2a2 2 0 002-2m0 0V5a2 2 0 012-2h2a2 2 0 012 2v14a2 2 0 01-2 2h-2a2 2 0 01-2-2z"></path>
+                        </svg>
+                    </div>
+                    <h3 class="text-xl font-bold text-gray-900 mb-3">Analytics Dashboard</h3>
+                    <p class="text-gray-600">Built automated business intelligence dashboards that improved month-end reporting accuracy and efficiency for Tyroola.</p>
+                </div>
+                
+                <div class="achievement-card scroll-reveal">
+                    <div class="w-16 h-16 bg-orange-100 rounded-full flex items-center justify-center mb-6">
+                        <svg class="w-8 h-8 text-orange-600" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 6.253v13m0-13C10.832 5.477 9.246 5 7.5 5S4.168 5.477 3 6.253v13C4.168 18.477 5.754 18 7.5 18s3.332.477 4.5 1.253m0-13C13.168 5.477 14.754 5 16.5 5c1.746 0 3.332.477 4.5 1.253v13C19.832 18.477 18.246 18 16.5 18c-1.746 0-3.332.477-4.5 1.253"></path>
+                        </svg>
+                    </div>
+                    <h3 class="text-xl font-bold text-gray-900 mb-3">UX Design Excellence</h3>
+                    <p class="text-gray-600">Led interaction design for AI-powered applications, conducting extensive usability testing and creating high-fidelity prototypes.</p>
+                </div>
+                
+                <div class="achievement-card scroll-reveal">
+                    <div class="w-16 h-16 bg-red-100 rounded-full flex items-center justify-center mb-6">
+                        <svg class="w-8 h-8 text-red-600" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M17 20h5v-2a3 3 0 00-5.356-1.857M17 20H7m10 0v-2c0-.656-.126-1.283-.356-1.857M7 20H2v-2a3 3 0 015.356-1.857M7 20v-2c0-.656.126-1.283.356-1.857m0 0a5.002 5.002 0 019.288 0M15 7a3 3 0 11-6 0 3 3 0 016 0zm6 3a2 2 0 11-4 0 2 2 0 014 0zM7 10a2 2 0 11-4 0 2 2 0 014 0z"></path>
+                        </svg>
+                    </div>
+                    <h3 class="text-xl font-bold text-gray-900 mb-3">Team Collaboration</h3>
+                    <p class="text-gray-600">Successfully collaborated with cross-functional teams including developers, designers, and business stakeholders on multiple projects.</p>
+                </div>
+                
+                <div class="achievement-card scroll-reveal">
+                    <div class="w-16 h-16 bg-indigo-100 rounded-full flex items-center justify-center mb-6">
+                        <svg class="w-8 h-8 text-indigo-600" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M10.325 4.317c.426-1.756 2.924-1.756 3.35 0a1.724 1.724 0 002.573 1.066c1.543-.94 3.31.826 2.37 2.37a1.724 1.724 0 001.065 2.572c1.756.426 1.756 2.924 0 3.35a1.724 1.724 0 00-1.066 2.573c.94 1.543-.826 3.31-2.37 2.37a1.724 1.724 0 00-2.572 1.065c-.426 1.756-2.924 1.756-3.35 0a1.724 1.724 0 00-2.573-1.066c-1.543.94-3.31-.826-2.37-2.37a1.724 1.724 0 00-1.065-2.572c-1.756-.426-1.756-2.924 0-3.35a1.724 1.724 0 001.066-2.573c-.94-1.543.826-3.31 2.37-2.37.996.608 2.296.07 2.572-1.065z"></path>
+                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15 12a3 3 0 11-6 0 3 3 0 016 0z"></path>
+                        </svg>
+                    </div>
+                    <h3 class="text-xl font-bold text-gray-900 mb-3">Technical Innovation</h3>
+                    <p class="text-gray-600">Continuously exploring emerging technologies and implementing innovative solutions in data science and user experience design.</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Philosophy -->
+    <section class="py-20 px-6 bg-gray-50">
+        <div class="max-w-4xl mx-auto text-center">
+            <h2 class="text-3xl md:text-4xl font-bold text-gray-900 mb-8 scroll-reveal">
+                My <span class="text-gradient">Philosophy</span>
+            </h2>
+            <blockquote class="text-2xl md:text-3xl text-gray-700 font-medium mb-8 scroll-reveal">
+                "Bridging creativity and analytics to build intelligent, human-centered systems."
+            </blockquote>
+            <p class="text-lg text-gray-600 leading-relaxed scroll-reveal">
+                I believe that the best data solutions are those that feel intuitive and natural to use. 
+                By combining rigorous analytical thinking with empathetic design, we can create systems 
+                that not only process information efficiently but also empower users to make better decisions.
+            </p>
+        </div>
+    </section>
+
+    <!-- CTA Section -->
+    <section class="py-20 px-6 bg-gradient-to-r from-blue-600 to-purple-600 text-white">
+        <div class="max-w-4xl mx-auto text-center">
+            <h2 class="text-4xl font-bold mb-6">Let's Connect</h2>
+            <p class="text-xl mb-8 opacity-90">
+                I'm always interested in discussing new opportunities and collaborations in data science, design, and technology.
+            </p>
+            <div class="flex flex-col sm:flex-row gap-4 justify-center">
+                <a href="contact.html" class="bg-white text-blue-600 px-8 py-4 rounded-full font-semibold hover:bg-gray-100 transition-all duration-300">
+                    Get In Touch
+                </a>
+                <a href="projects.html" class="border-2 border-white text-white px-8 py-4 rounded-full font-semibold hover:bg-white hover:text-blue-600 transition-all duration-300">
+                    View My Work
+                </a>
+            </div>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer class="bg-gray-900 text-white py-12 px-6">
+        <div class="max-w-7xl mx-auto text-center">
+            <div class="mb-8">
+                <div class="text-2xl font-bold text-gradient mb-4">Weijie Huang</div>
+                <p class="text-gray-400 max-w-2xl mx-auto">
+                    Crafting intelligent, human-centered systems that bridge the gap between data science and user experience design.
+                </p>
+            </div>
+            
+            <div class="border-t border-gray-800 pt-8">
+                <p class="text-gr
