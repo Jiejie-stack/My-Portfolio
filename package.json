@@ -3,6 +3,7 @@
   "version": "1.0.0",
   "description": "Weijie Huang's Personal Portfolio - Data Science & Design",
   "private": true,
+  "homepage": "https://Jiejie-stack.github.io/My-Portfolio",
   "dependencies": {
     "@testing-library/jest-dom": "^5.16.4",
     "@testing-library/react": "^13.3.0",
