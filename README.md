@@ -131,12 +131,68 @@ Portfolio/
 
 ## 部署说明
 
-1. 将所有文件上传到Web服务器
-2. 确保所有资源文件路径正确
-3. 配置HTTPS以支持现代浏览器功能
-4. 设置适当的缓存策略
+### 快速部署（推荐）
+
+本项目提供了多种简单的部署方式，**最简单快捷的方式是使用 GitHub Pages**。
+
+**快速部署**：查看 [QUICK_DEPLOY.md](./QUICK_DEPLOY.md)（3 步完成）  
+**详细教程**：查看 [DEPLOYMENT.md](./DEPLOYMENT.md)（完整说明）
+
+#### 方式一：GitHub Pages（最简单，推荐）⭐
+
+1. **准备项目**：将代码推送到 GitHub
+2. **构建项目**：运行 `npm run build`
+3. **自动部署**：项目已配置 GitHub Actions，推送代码后自动部署
+4. **访问网站**：`https://你的用户名.github.io/你的仓库名/`
+
+#### 方式二：Vercel（免费，自动部署）⭐
+
+1. 访问 [Vercel](https://vercel.com)
+2. 使用 GitHub 账号登录
+3. 导入仓库并自动部署
+4. 访问网站：`https://你的项目名.vercel.app`
+
+#### 方式三：Netlify（免费，简单）
+
+1. 访问 [Netlify](https://www.netlify.com)
+2. 使用 GitHub 账号登录
+3. 导入仓库并配置构建设置
+4. 访问网站：`https://随机名称.netlify.app`
+
+### 本地开发
+
+```bash
+# 安装依赖
+npm install
+
+# 启动开发服务器
+npm start
+
+# 构建生产版本
+npm run build
+
+# 本地预览构建结果
+npx serve -s build
+```
+
+### 传统服务器部署
+
+1. 运行 `npm run build` 构建项目
+2. 将 `build` 文件夹中的所有文件上传到服务器
+3. 配置 Web 服务器（Nginx/Apache）支持单页应用路由
+4. 配置 HTTPS 证书（推荐使用 Let's Encrypt）
+
+详细步骤请参考 [DEPLOYMENT.md](./DEPLOYMENT.md)
 
 ## 更新日志
+
+### v1.1.0 (2025-01-27)
+- ✨ 优化界面样式和动画效果
+- 📝 添加详细的部署教程文档（DEPLOYMENT.md）
+- 🎨 增强文字渲染和图片优化
+- 🔧 优化 GitHub Pages 路由配置
+- 📱 改进移动端显示效果
+- 🚀 添加多种部署方式说明
 
 ### v1.0.0 (2025-01-27)
 - 初始版本发布

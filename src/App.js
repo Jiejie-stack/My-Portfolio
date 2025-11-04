@@ -10,8 +10,11 @@ import Contact from './pages/Contact';
 
 function App() {
   // 自动检测GitHub Pages的base path
-  const basename = process.env.NODE_ENV === 'production' && process.env.PUBLIC_URL 
-    ? process.env.PUBLIC_URL 
+  // React会从package.json的homepage字段自动设置PUBLIC_URL
+  // 对于GitHub Pages，homepage应该是：https://用户名.github.io/仓库名
+  // 这样PUBLIC_URL会自动包含仓库路径
+  const basename = process.env.PUBLIC_URL 
+    ? new URL(process.env.PUBLIC_URL).pathname 
     : '';
 
   return (
