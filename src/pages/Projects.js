@@ -1,6 +1,7 @@
 import React, { useState } from 'react';
 import { motion } from 'framer-motion';
 import { useInView } from 'react-intersection-observer';
+import { Link } from 'react-router-dom';
 
 const Projects = () => {
   const [activeFilter, setActiveFilter] = useState('all');
@@ -10,11 +11,12 @@ const Projects = () => {
       id: 'ai-platform',
       title: 'AI-Based Image Generation Service Platform',
       description: 'Designed and developed an AI-powered platform that allows users to generate high-quality images through an elegant interface and robust backend APIs. The platform features real-time generation, user management, and comprehensive analytics.',
-      longDescription: 'This comprehensive AI platform represents the culmination of my expertise in both data science and user experience design. Built with a modern tech stack, the platform serves as a complete solution for AI-powered image generation, featuring real-time processing, user authentication, and detailed analytics.',
+      longDescription: 'Designed and developed an AI-based image generation service platform, enabling users to efficiently create high-quality, customized images through intuitive interfaces and robust APIs, significantly enhancing creative workflows and accessibility to advanced generative technologies.',
       image: '/resources/project-ai-platform.png',
       category: 'AI Platform',
       date: 'Feb 2025 – July 2025',
-      technologies: ['Python', 'FastAPI', 'React.js', 'PostgreSQL', 'Docker', 'AWS'],
+      location: 'Sydney, Australia',
+      technologies: ['Python', 'FastAPI', 'React.js', 'PostgreSQL', 'Docker', 'AWS', 'Apifox'],
       features: [
         'Real-time AI image generation using advanced ML models',
         'User authentication and subscription management',
@@ -268,12 +270,12 @@ const ProjectCard = ({ project, index }) => {
           )}
         </div>
         <div className="flex space-x-4">
-          <button
-            onClick={() => document.getElementById(`modal-${project.id}`).showModal()}
+          <Link
+            to={`/projects/${project.id}`}
             className="text-blue-600 font-medium hover:text-blue-800 transition-colors"
           >
             Learn More →
-          </button>
+          </Link>
           {project.github && (
             <a
               href={project.github}

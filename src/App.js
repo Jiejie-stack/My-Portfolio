@@ -7,6 +7,7 @@ import Home from './pages/Home';
 import About from './pages/About';
 import Projects from './pages/Projects';
 import Contact from './pages/Contact';
+import ProjectDetail from './pages/ProjectDetail';
 
 function App() {
   // 自动检测部署平台并设置正确的 basename
@@ -60,6 +61,7 @@ function App() {
             <Route path="/" element={<Home />} />
             <Route path="/about" element={<About />} />
             <Route path="/projects" element={<Projects />} />
+            <Route path="/projects/:projectId" element={<ProjectDetail />} />
             <Route path="/contact" element={<Contact />} />
           </Routes>
         </main>
