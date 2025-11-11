@@ -441,15 +441,6 @@ const TechnologiesSection = ({ technologies }) => {
     triggerOnce: true
   });
 
-  // 技术分类
-  const techCategories = {
-    'Frontend': ['React.js'],
-    'Backend': ['Python', 'FastAPI'],
-    'Database': ['PostgreSQL'],
-    'DevOps': ['Docker', 'AWS'],
-    'Tools': ['Apifox']
-  };
-
   return (
     <section ref={ref} className="py-20 px-6 bg-gray-50">
       <div className="max-w-7xl mx-auto">
