@@ -355,7 +355,7 @@ const ProjectsSection = () => {
       category: "AI Platform",
       date: "Feb 2025 – July 2025",
       technologies: ["Python", "FastAPI", "React.js", "PostgreSQL"],
-      link: "/projects#ai-platform"
+      link: "/projects/ai-platform"
     },
     {
       id: "ai-calendar",
@@ -365,7 +365,7 @@ const ProjectsSection = () => {
       category: "UX Design",
       date: "July 2023 – Nov 2023",
       technologies: ["Figma", "Adobe XD", "JavaScript"],
-      link: "/projects#ai-calendar"
+      link: "/projects/ai-calendar"
     }
   ];
 
@@ -391,44 +391,46 @@ const ProjectsSection = () => {
           className="grid grid-cols-1 md:grid-cols-2 gap-8"
         >
           {projects.map((project, index) => (
-            <motion.div
+            <Link
               key={project.id}
-              initial={{ opacity: 0, y: 30 }}
-              animate={inView ? { opacity: 1, y: 0 } : { opacity: 0, y: 30 }}
-              transition={{ duration: 0.8, delay: 0.1 * index }}
-              className="project-card card-hover"
+              to={project.link}
+              className="block"
             >
-              <div className="aspect-video overflow-hidden rounded-t-2xl">
-                <img
-                  src={project.image}
-                  alt={project.title}
-                  className="w-full h-full object-cover"
-                />
-              </div>
-              <div className="p-6">
-                <div className="flex items-center justify-between mb-4">
-                  <span className={`${project.category === "AI Platform" ? "bg-blue-100 text-blue-800" : "bg-purple-100 text-purple-800"} text-sm font-medium px-3 py-1 rounded-full`}>
-                    {project.category}
-                  </span>
-                  <span className="text-gray-500 text-sm">{project.date}</span>
+              <motion.div
+                initial={{ opacity: 0, y: 30 }}
+                animate={inView ? { opacity: 1, y: 0 } : { opacity: 0, y: 30 }}
+                transition={{ duration: 0.8, delay: 0.1 * index }}
+                className="project-card card-hover cursor-pointer"
+              >
+                <div className="aspect-video overflow-hidden rounded-t-2xl">
+                  <img
+                    src={project.image}
+                    alt={project.title}
+                    className="w-full h-full object-cover"
+                  />
                 </div>
-                <h3 className="text-xl font-bold text-gray-900 mb-3">{project.title}</h3>
-                <p className="text-gray-600 mb-4">{project.description}</p>
-                <div className="flex flex-wrap gap-2 mb-4">
-                  {project.technologies.map((tech, techIndex) => (
-                    <span key={techIndex} className="bg-gray-100 text-gray-700 text-xs px-2 py-1 rounded">
-                      {tech}
+                <div className="p-6">
+                  <div className="flex items-center justify-between mb-4">
+                    <span className={`${project.category === "AI Platform" ? "bg-blue-100 text-blue-800" : "bg-purple-100 text-purple-800"} text-sm font-medium px-3 py-1 rounded-full`}>
+                      {project.category}
                     </span>
-                  ))}
+                    <span className="text-gray-500 text-sm">{project.date}</span>
+                  </div>
+                  <h3 className="text-xl font-bold text-gray-900 mb-3">{project.title}</h3>
+                  <p className="text-gray-600 mb-4">{project.description}</p>
+                  <div className="flex flex-wrap gap-2 mb-4">
+                    {project.technologies.map((tech, techIndex) => (
+                      <span key={techIndex} className="bg-gray-100 text-gray-700 text-xs px-2 py-1 rounded">
+                        {tech}
+                      </span>
+                    ))}
+                  </div>
+                  <span className="text-blue-600 font-medium hover:text-blue-800 transition-colors inline-block">
+                    Learn More →
+                  </span>
                 </div>
-                <Link
-                  to={project.link}
-                  className="text-blue-600 font-medium hover:text-blue-800 transition-colors"
-                >
-                  Learn More →
-                </Link>
-              </div>
-            </motion.div>
+              </motion.div>
+            </Link>
           ))}
         </motion.div>
         

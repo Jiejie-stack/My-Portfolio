@@ -38,16 +38,18 @@ const Projects = () => {
         'Maintained 4.8/5 user satisfaction rating'
       ],
       github: 'https://github.com/weijiehuang/ai-image-platform',
-      demo: 'https://ai-image-platform.vercel.app'
+      demo: 'https://ai-image-platform.vercel.app',
+      figma: 'https://www.figma.com/proto/yJSPROnOA8qZl9Td2GHnbb/CS45-1?node-id=0-1&t=gL568yv5zBIqj9MX-1'
     },
     {
       id: 'ai-calendar',
       title: 'AI Calendar Management Application',
-      description: 'Led the interaction design for an intelligent AI scheduling app that automates event planning and improves productivity through adaptive recommendations and smart conflict resolution.',
-      longDescription: 'This project focused on creating an intuitive and intelligent calendar management system that leverages AI to optimize scheduling and improve user productivity. The application features smart scheduling suggestions, conflict detection, and personalized recommendations based on user behavior patterns.',
+      description: 'Led the design of an intelligent AI calendar management application, playing an important role in automating scheduling tasks, optimizing user productivity, and enhancing time-management efficiency through innovative, user-centric features.',
+      longDescription: 'Led the design of an intelligent AI calendar management application, playing an important role in automating scheduling tasks, optimizing user productivity, and enhancing time-management efficiency through innovative, user-centric features.',
       image: '/resources/project-ai-calendar.png',
       category: 'UX Design',
       date: 'July 2023 – Nov 2023',
+      location: 'Sydney, Australia',
       technologies: ['Figma', 'Adobe XD', 'JavaScript', 'React', 'Node.js', 'MongoDB'],
       features: [
         'AI-powered smart scheduling suggestions',
@@ -70,7 +72,8 @@ const Projects = () => {
         'Received positive feedback from 200+ beta users'
       ],
       github: 'https://github.com/weijiehuang/ai-calendar-app',
-      demo: 'https://ai-calendar-demo.netlify.app'
+      demo: 'https://ai-calendar-demo.netlify.app',
+      figma: 'https://www.figma.com/proto/F2YeoRgkvnI4cvbPBcJcLP/AI-Calendar?node-id=4-3&t=oS9POAVjZCCBT0WE-1'
     },
     {
       id: 'analytics-dashboard',
@@ -233,150 +236,64 @@ const ProjectCard = ({ project, index }) => {
     }
   };
 
-  return (
-    <motion.div
-      ref={ref}
-      initial={{ opacity: 0, y: 30 }}
-      animate={inView ? { opacity: 1, y: 0 } : { opacity: 0, y: 30 }}
-      transition={{ duration: 0.8, delay: 0.1 * index }}
-      className="project-card card-hover"
-    >
-      <div className="aspect-video overflow-hidden rounded-t-2xl">
-        <img
-          src={project.image}
-          alt={project.title}
-          className="w-full h-full object-cover"
-        />
-      </div>
-      <div className="p-6">
-        <div className="flex items-center justify-between mb-4">
-          <span className={`${getCategoryColor(project.category)} text-sm font-medium px-3 py-1 rounded-full`}>
-            {project.category}
-          </span>
-          <span className="text-gray-500 text-sm">{project.date}</span>
-        </div>
-        <h3 className="text-xl font-bold text-gray-900 mb-3">{project.title}</h3>
-        <p className="text-gray-600 mb-4">{project.description}</p>
-        <div className="flex flex-wrap gap-2 mb-4">
-          {project.technologies.slice(0, 4).map((tech, techIndex) => (
-            <span key={techIndex} className="bg-gray-100 text-gray-700 text-xs px-2 py-1 rounded">
-              {tech}
-            </span>
-          ))}
-          {project.technologies.length > 4 && (
-            <span className="bg-gray-100 text-gray-700 text-xs px-2 py-1 rounded">
-              +{project.technologies.length - 4} more
-            </span>
-          )}
-        </div>
-        <div className="flex space-x-4">
-          <Link
-            to={`/projects/${project.id}`}
-            className="text-blue-600 font-medium hover:text-blue-800 transition-colors"
-          >
-            Learn More →
-          </Link>
-          {project.github && (
-            <a
-              href={project.github}
-              target="_blank"
-              rel="noopener noreferrer"
-              className="text-gray-600 hover:text-gray-800 transition-colors"
-            >
-              GitHub
-            </a>
-          )}
-          {project.demo && (
-            <a
-              href={project.demo}
-              target="_blank"
-              rel="noopener noreferrer"
-              className="text-gray-600 hover:text-gray-800 transition-colors"
-            >
-              Demo
-            </a>
-          )}
-        </div>
-      </div>
-      
-      {/* Project Modal */}
-      <ProjectModal project={project} />
-    </motion.div>
-  );
-};
+  // 阻止事件冒泡，防止触发卡片跳转
+  const handleLinkClick = (e) => {
+    e.stopPropagation();
+  };
 
-// Project Modal Component
-const ProjectModal = ({ project }) => {
   return (
-    <dialog id={`modal-${project.id}`} className="modal">
-      <div className="modal-box max-w-4xl">
-        <form method="dialog">
-          <button className="btn btn-sm btn-circle btn-ghost absolute right-2 top-2">✕</button>
-        </form>
-        <div className="space-y-6">
-          <div className="flex items-center justify-between">
-            <h3 className="text-2xl font-bold text-gray-900">{project.title}</h3>
-            <span className="text-gray-500">{project.date}</span>
-          </div>
-          
+    <Link
+      to={`/projects/${project.id}`}
+      className="block"
+    >
+      <motion.div
+        ref={ref}
+        initial={{ opacity: 0, y: 30 }}
+        animate={inView ? { opacity: 1, y: 0 } : { opacity: 0, y: 30 }}
+        transition={{ duration: 0.8, delay: 0.1 * index }}
+        className="project-card card-hover cursor-pointer"
+      >
+        <div className="aspect-video overflow-hidden rounded-t-2xl">
           <img
             src={project.image}
             alt={project.title}
-            className="w-full h-64 object-cover rounded-lg"
+            className="w-full h-full object-cover"
           />
-          
-          <div>
-            <h4 className="text-lg font-semibold text-gray-900 mb-2">Description</h4>
-            <p className="text-gray-600">{project.longDescription}</p>
+        </div>
+        <div className="p-6">
+          <div className="flex items-center justify-between mb-4">
+            <span className={`${getCategoryColor(project.category)} text-sm font-medium px-3 py-1 rounded-full`}>
+              {project.category}
+            </span>
+            <span className="text-gray-500 text-sm">{project.date}</span>
           </div>
-          
-          <div>
-            <h4 className="text-lg font-semibold text-gray-900 mb-2">Key Features</h4>
-            <ul className="list-disc list-inside space-y-1 text-gray-600">
-              {project.features.map((feature, index) => (
-                <li key={index}>{feature}</li>
-              ))}
-            </ul>
+          <h3 className="text-xl font-bold text-gray-900 mb-3">{project.title}</h3>
+          <p className="text-gray-600 mb-4">{project.description}</p>
+          <div className="flex flex-wrap gap-2 mb-4">
+            {project.technologies.slice(0, 4).map((tech, techIndex) => (
+              <span key={techIndex} className="bg-gray-100 text-gray-700 text-xs px-2 py-1 rounded">
+                {tech}
+              </span>
+            ))}
+            {project.technologies.length > 4 && (
+              <span className="bg-gray-100 text-gray-700 text-xs px-2 py-1 rounded">
+                +{project.technologies.length - 4} more
+              </span>
+            )}
           </div>
-          
-          <div>
-            <h4 className="text-lg font-semibold text-gray-900 mb-2">Challenges</h4>
-            <ul className="list-disc list-inside space-y-1 text-gray-600">
-              {project.challenges.map((challenge, index) => (
-                <li key={index}>{challenge}</li>
-              ))}
-            </ul>
-          </div>
-          
-          <div>
-            <h4 className="text-lg font-semibold text-gray-900 mb-2">Results</h4>
-            <ul className="list-disc list-inside space-y-1 text-gray-600">
-              {project.results.map((result, index) => (
-                <li key={index}>{result}</li>
-              ))}
-            </ul>
-          </div>
-          
-          <div>
-            <h4 className="text-lg font-semibold text-gray-900 mb-2">Technologies Used</h4>
-            <div className="flex flex-wrap gap-2">
-              {project.technologies.map((tech, index) => (
-                <span key={index} className="bg-blue-100 text-blue-800 text-sm px-3 py-1 rounded-full">
-                  {tech}
-                </span>
-              ))}
-            </div>
-          </div>
-          
-          <div className="flex space-x-4">
+          <div className="flex space-x-4" onClick={handleLinkClick}>
+            <span className="text-blue-600 font-medium hover:text-blue-800 transition-colors">
+              Learn More →
+            </span>
             {project.github && (
               <a
                 href={project.github}
                 target="_blank"
                 rel="noopener noreferrer"
-                className="bg-gray-900 text-white px-6 py-2 rounded-lg hover:bg-gray-800 transition-colors"
+                className="text-gray-600 hover:text-gray-800 transition-colors"
+                onClick={handleLinkClick}
               >
-                View Code
+                GitHub
               </a>
             )}
             {project.demo && (
@@ -384,15 +301,16 @@ const ProjectModal = ({ project }) => {
                 href={project.demo}
                 target="_blank"
                 rel="noopener noreferrer"
-                className="bg-blue-600 text-white px-6 py-2 rounded-lg hover:bg-blue-700 transition-colors"
+                className="text-gray-600 hover:text-gray-800 transition-colors"
+                onClick={handleLinkClick}
               >
-                Live Demo
+                Demo
               </a>
             )}
           </div>
         </div>
-      </div>
-    </dialog>
+      </motion.div>
+    </Link>
   );
 };
 

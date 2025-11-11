@@ -62,7 +62,85 @@ const projectData = {
       'Reduced onboarding time for new team members'
     ],
     github: 'https://github.com/weijiehuang/ai-image-platform',
-    demo: 'https://ai-image-platform.vercel.app'
+    demo: 'https://ai-image-platform.vercel.app',
+    figma: 'https://www.figma.com/proto/yJSPROnOA8qZl9Td2GHnbb/CS45-1?node-id=0-1&t=gL568yv5zBIqj9MX-1',
+    gallery: [
+      {
+        image: '/resources/Main page.png',
+        title: 'Main Page',
+        description: 'Homepage with hero section and featured models'
+      },
+      {
+        image: '/resources/Login.png',
+        title: 'Login Page',
+        description: 'User authentication interface with cosmic theme'
+      },
+      {
+        image: '/resources/Models.png',
+        title: 'Models Page',
+        description: 'AI model selection and API key management'
+      }
+    ]
+  },
+  'ai-calendar': {
+    id: 'ai-calendar',
+    title: 'AI Calendar Management Application',
+    description: 'Led the design of an intelligent AI calendar management application, playing an important role in automating scheduling tasks, optimizing user productivity, and enhancing time-management efficiency through innovative, user-centric features.',
+    longDescription: 'Led the design of an intelligent AI calendar management application, playing an important role in automating scheduling tasks, optimizing user productivity, and enhancing time-management efficiency through innovative, user-centric features.',
+    image: '/resources/project-ai-calendar.png',
+    category: 'UX Design',
+    date: 'July 2023 – Nov 2023',
+    location: 'Sydney, Australia',
+    technologies: ['Figma', 'Adobe XD', 'JavaScript', 'React', 'Node.js', 'MongoDB'],
+    features: [
+      'AI-powered smart scheduling suggestions',
+      'Intelligent conflict detection and resolution',
+      'Personalized productivity insights',
+      'Cross-platform synchronization',
+      'Voice command integration',
+      'Team collaboration features'
+    ],
+    contributions: [
+      {
+        title: 'Interaction Design',
+        description: 'Designed intuitive user flows and interactive components for key features including smart event suggestions, conflict detection, and personalized reminders. Ensured the interface aligned with human-centered design principles to reduce user friction and increase engagement.'
+      },
+      {
+        title: 'Prototyping',
+        description: 'Developed high-fidelity prototypes using tools such as Figma and Adobe XD to visualize the final user experience. Conducted iterative design testing and incorporated user feedback to refine interface responsiveness, accessibility, and task completion efficiency.'
+      }
+    ],
+    challenges: [
+      'Designing intuitive interfaces for complex AI functionality',
+      'Creating seamless user onboarding experience',
+      'Balancing automation with user control',
+      'Ensuring accessibility across different devices',
+      'Translating AI capabilities into user-friendly interactions',
+      'Maintaining design consistency across multiple platforms'
+    ],
+    results: [
+      'Reduced scheduling time by 40%',
+      'Improved user productivity by 25%',
+      'Achieved 95% user adoption rate',
+      'Received positive feedback from 200+ beta users',
+      'Successfully implemented human-centered design principles',
+      'Enhanced user engagement through intuitive interface design'
+    ],
+    github: 'https://github.com/weijiehuang/ai-calendar-app',
+    demo: 'https://ai-calendar-demo.netlify.app',
+    figma: 'https://www.figma.com/proto/F2YeoRgkvnI4cvbPBcJcLP/AI-Calendar?node-id=4-3&t=oS9POAVjZCCBT0WE-1',
+    gallery: [
+      {
+        image: '/resources/Home Page.png',
+        title: 'Home Page',
+        description: 'Calendar view with schedule and daily timeline'
+      },
+      {
+        image: '/resources/Login Page.png',
+        title: 'Login Page',
+        description: 'User authentication interface with modern design'
+      }
+    ]
   }
 };
 
@@ -106,7 +184,12 @@ const ProjectDetail = () => {
       <ChallengesSection challenges={project.challenges} />
       
       {/* Results & Impact */}
-      <ResultsSection results={project.results} />
+      <ResultsSection results={project.results} project={project} />
+      
+      {/* Gallery - Only show if project has gallery images */}
+      {project.gallery && project.gallery.length > 0 && (
+        <GallerySection gallery={project.gallery} />
+      )}
       
       {/* Call to Action */}
       <CTASection project={project} navigate={navigate} />
@@ -452,18 +535,34 @@ const ChallengesSection = ({ challenges }) => {
 };
 
 // Results Section Component
-const ResultsSection = ({ results }) => {
+const ResultsSection = ({ results, project }) => {
   const [ref, inView] = useInView({
     threshold: 0.1,
     triggerOnce: true
   });
 
-  const keyMetrics = [
-    { label: 'Uptime', value: '99.9%', icon: '⚡' },
-    { label: 'Requests Processed', value: '10,000+', icon: '📊' },
-    { label: 'Response Time', value: '<3s', icon: '🚀' },
-    { label: 'User Rating', value: '4.8/5', icon: '⭐' }
-  ];
+  // 根据项目类型显示不同的关键指标
+  const getKeyMetrics = () => {
+    if (project.category === 'UX Design') {
+      // AI Calendar项目的指标
+      return [
+        { label: 'Time Saved', value: '40%', icon: '⏱️' },
+        { label: 'Productivity', value: '+25%', icon: '📈' },
+        { label: 'User Adoption', value: '95%', icon: '👥' },
+        { label: 'Beta Users', value: '200+', icon: '⭐' }
+      ];
+    } else {
+      // AI Platform项目的指标
+      return [
+        { label: 'Uptime', value: '99.9%', icon: '⚡' },
+        { label: 'Requests Processed', value: '10,000+', icon: '📊' },
+        { label: 'Response Time', value: '<3s', icon: '🚀' },
+        { label: 'User Rating', value: '4.8/5', icon: '⭐' }
+      ];
+    }
+  };
+
+  const keyMetrics = getKeyMetrics();
 
   return (
     <section ref={ref} className="py-20 px-6 bg-gray-50">
@@ -519,6 +618,67 @@ const ResultsSection = ({ results }) => {
   );
 };
 
+// Gallery Section Component
+const GallerySection = ({ gallery }) => {
+  const [ref, inView] = useInView({
+    threshold: 0.1,
+    triggerOnce: true
+  });
+
+  return (
+    <section ref={ref} className="py-12 px-6 bg-gray-50">
+      <div className="max-w-5xl mx-auto">
+        <motion.div
+          initial={{ opacity: 0, y: 30 }}
+          animate={inView ? { opacity: 1, y: 0 } : { opacity: 0, y: 30 }}
+          transition={{ duration: 0.8 }}
+          className="text-center mb-8"
+        >
+          <h2 className="text-2xl md:text-3xl font-bold text-gray-900 mb-2">Project Screenshots</h2>
+          <p className="text-lg text-gray-600 max-w-2xl mx-auto">
+            Key interface designs and user experience highlights
+          </p>
+        </motion.div>
+
+        <motion.div
+          initial={{ opacity: 0, y: 30 }}
+          animate={inView ? { opacity: 1, y: 0 } : { opacity: 0, y: 30 }}
+          transition={{ duration: 0.8, delay: 0.2 }}
+          className={`grid grid-cols-1 gap-4 ${
+            gallery.length === 2 
+              ? 'md:grid-cols-2 max-w-3xl mx-auto' 
+              : 'md:grid-cols-3'
+          }`}
+        >
+          {gallery.map((item, index) => (
+            <motion.div
+              key={index}
+              initial={{ opacity: 0, y: 30 }}
+              animate={inView ? { opacity: 1, y: 0 } : { opacity: 0, y: 30 }}
+              transition={{ duration: 0.8, delay: 0.1 * index }}
+              className="group"
+            >
+              <div className="dark-image-container mb-3" style={{ padding: '12px' }}>
+                <img
+                  src={item.image}
+                  alt={item.title}
+                  className="w-full h-auto rounded-lg transition-transform duration-300 group-hover:scale-[1.02]"
+                  loading="lazy"
+                  style={{ maxHeight: '300px', objectFit: 'contain' }}
+                />
+              </div>
+              <div className="text-center">
+                <h3 className="text-base font-semibold text-gray-900 mb-1">{item.title}</h3>
+                <p className="text-xs text-gray-600">{item.description}</p>
+              </div>
+            </motion.div>
+          ))}
+        </motion.div>
+      </div>
+    </section>
+  );
+};
+
 // CTA Section Component
 const CTASection = ({ project, navigate }) => {
   const [ref, inView] = useInView({
@@ -564,6 +724,19 @@ const CTASection = ({ project, navigate }) => {
                 <path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M10 6H6a2 2 0 00-2 2v10a2 2 0 002 2h10a2 2 0 002-2v-4M14 4h6m0 0v6m0-6L10 14"></path>
               </svg>
               Live Demo
+            </a>
+          )}
+          {project.figma && (
+            <a
+              href={project.figma}
+              target="_blank"
+              rel="noopener noreferrer"
+              className="bg-purple-600 text-white px-8 py-4 rounded-full font-semibold hover:bg-purple-700 transition-all duration-300 flex items-center justify-center"
+            >
+              <svg className="w-5 h-5 mr-2" fill="currentColor" viewBox="0 0 24 24">
+                <path d="M15.852 8.981h-4.588V0h4.588c2.476 0 4.49 2.014 4.49 4.49s-2.014 4.491-4.49 4.491zM12.264 9.8h4.588c2.476 0 4.49 2.014 4.49 4.49s-2.014 4.49-4.49 4.49h-4.588V9.8zm-4.588 0h4.588v9.621H7.676c-2.476 0-4.49-2.014-4.49-4.49s2.014-4.49 4.49-4.49z"/>
+              </svg>
+              View Figma Design
             </a>
           )}
           <Link
